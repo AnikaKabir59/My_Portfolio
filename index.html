@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Anika Portfolio</title>
 
   <!-- Tailwind + DaisyUI -->
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
   <link
     href="https://cdn.jsdelivr.net/npm/daisyui@5"
     rel="stylesheet"
@@ -14,539 +15,868 @@
   />
 
   <style>
-    html {
-      scroll-behavior: smooth;
+
+    html{
+      scroll-behavior:smooth;
     }
 
-    body {
-      overflow-x: hidden;
+    body{
+      overflow-x:hidden;
+      background:#f5f7fb;
+      font-family:Arial,sans-serif;
     }
 
-    .section-title {
-      font-size: 2rem;
-      font-weight: bold;
-      margin-bottom: 20px;
+    /* SECTION */
+    .section-title{
+      font-size:2.2rem;
+      font-weight:bold;
+      margin-bottom:20px;
+      color:#111827;
     }
 
-    .section-description {
-      color: #555;
-      max-width: 700px;
-      margin: 0 auto;
-      line-height: 1.7;
+    .section-description{
+      color:#6b7280;
+      max-width:700px;
+      margin:0 auto;
+      line-height:1.8;
     }
 
-    /* FIXED ABOUT SECTION RESPONSIVENESS */
-    .about-items {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      margin-top: 40px;
+    /* COMMON CARD */
+    .about-item,
+    .skill,
+    .blog-card,
+    .contact-card{
+      background:white;
+      border-radius:18px;
+      box-shadow:0 4px 20px rgba(0,0,0,0.06);
+      transition:0.3s;
     }
 
-    .about-item {
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    .about-item:hover,
+    .skill:hover,
+    .blog-card:hover,
+    .contact-card:hover{
+      transform:translateY(-6px);
+      box-shadow:0 10px 25px rgba(0,0,0,0.12);
     }
 
-    .item-title {
-      font-weight: 600;
-      color: gray;
-      margin-bottom: 8px;
+    /* ABOUT */
+    .about-items{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:20px;
+      margin-top:40px;
     }
 
-    .item-description {
-      font-size: 18px;
-      font-weight: 700;
+    .about-item{
+      padding:25px;
+    }
+
+    .item-title{
+      color:gray;
+      font-weight:600;
+    }
+
+    .item-description{
+      font-size:18px;
+      font-weight:bold;
+      margin-top:8px;
     }
 
     /* SKILLS */
-    .skills-container {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
+    .skills-container{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:20px;
     }
 
-    .skill {
-      background: #f3f4f6;
-      padding: 30px;
-      text-align: center;
-      border-radius: 15px;
-      transition: 0.3s;
+    .skill{
+      padding:30px;
+      text-align:center;
     }
 
-    .skill:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    .skill img{
+      width:65px;
+      margin:auto;
+      margin-bottom:15px;
     }
 
-    .skill img {
-      margin: auto;
-      margin-bottom: 15px;
-      width: 60px;
+    .skill-title{
+      font-size:20px;
+      font-weight:bold;
     }
 
-    .skill-title {
-      font-size: 20px;
-      font-weight: bold;
+    /* BLOG */
+    .blog-card img{
+      height:220px;
+      width:100%;
+      object-fit:cover;
     }
 
-    /* MOBILE RESPONSIVE */
-    @media screen and (max-width: 768px) {
-      .about-items {
-        grid-template-columns: repeat(1, 1fr);
+    /* MOBILE */
+    @media screen and (max-width:768px){
+
+      .about-items,
+      .skills-container{
+        grid-template-columns:repeat(1,1fr);
       }
 
-      .skills-container {
-        grid-template-columns: repeat(1, 1fr);
+      .hero-text{
+        text-align:center;
+        margin-top:40px;
       }
 
-      .hero-text {
-        margin-top: 40px;
-        text-align: center;
+      .hero-image{
+        width:100%;
+        margin-top:30px;
       }
 
-      .hero-image {
-        position: static;
-        width: 100%;
-        margin-top: 30px;
+      .section-title{
+        font-size:1.8rem;
       }
 
-      .section-title {
-        font-size: 1.7rem;
-      }
     }
 
     /* TABLET */
-    @media screen and (min-width: 769px) and (max-width: 1024px) {
-      .about-items {
-        grid-template-columns: repeat(2, 1fr);
+    @media screen and (min-width:769px) and (max-width:1024px){
+
+      .about-items,
+      .skills-container{
+        grid-template-columns:repeat(2,1fr);
       }
 
-      .skills-container {
-        grid-template-columns: repeat(2, 1fr);
-      }
     }
+
   </style>
+
 </head>
 
 <body class="flex flex-col items-center">
 
-  <!-- Header -->
+  <!-- HEADER -->
   <header class="w-full">
+
     <div
-      class="w-full min-h-screen bg-blue-200 bg-center bg-cover px-5 md:px-12 lg:px-28 py-5 relative"
+      class="w-full min-h-screen bg-gradient-to-r from-blue-200 to-cyan-100 px-5 md:px-12 lg:px-28 py-5"
     >
 
-      <!-- Navbar -->
-      <div class="navbar bg-base-100 shadow-sm rounded-xl">
+      <!-- NAVBAR -->
+      <div class="navbar bg-base-100 rounded-xl shadow-md">
 
-        <!-- Left -->
+        <!-- LEFT -->
         <div class="navbar-start">
+
           <a
             href="#"
-            class="btn btn-ghost normal-case text-xl flex items-center gap-2"
+            class="btn btn-ghost text-2xl font-bold"
           >
-            <span>Anika</span>
+            Anika
           </a>
+
         </div>
 
-        <!-- Center -->
+        <!-- CENTER -->
         <div class="navbar-center hidden lg:flex">
-          <ul class="menu menu-horizontal px-1">
-            <li><a href="#about">About me</a></li>
+
+          <ul class="menu menu-horizontal px-1 text-[16px]">
 
             <li>
-              <details>
-                <summary>My work</summary>
-                <ul class="p-2 bg-base-100 w-40 z-10">
-                  <li><a href="#skills">What I Do</a></li>
-                  <li><a href="#education">Education</a></li>
-                </ul>
-              </details>
+              <a href="#about">
+                About
+              </a>
             </li>
 
-            <li><a href="#contact">Contact</a></li>
+            <li>
+              <a href="#skills">
+                Skills
+              </a>
+            </li>
+
+            <li>
+              <a href="#education">
+                Education
+              </a>
+            </li>
+
+            <li>
+              <a href="#blog">
+                Blog
+              </a>
+            </li>
+
+            <li>
+              <a href="#contact">
+                Contact
+              </a>
+            </li>
+
           </ul>
+
         </div>
 
-        <!-- Right -->
+        <!-- RIGHT -->
         <div class="navbar-end">
-          <div class="dropdown dropdown-end">
-            <label tabindex="0" class="btn m-1">Learn More</label>
 
-            <ul
-              tabindex="0"
-              class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
-            >
-              <li><a href="#about">About Me</a></li>
-              <li><a href="#skills">My Skills</a></li>
-              <li><a href="#education">Education</a></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>
-          </div>
+          <a
+            href="#blog"
+            class="btn btn-primary rounded-full px-6"
+          >
+            Blog
+          </a>
+
         </div>
+
       </div>
 
-      <!-- Hero Section -->
+      <!-- HERO -->
       <div
         class="flex flex-col-reverse lg:flex-row items-center justify-between mt-10 lg:mt-24"
       >
 
-        <!-- Hero Text -->
+        <!-- HERO TEXT -->
         <div class="hero-text text-black">
+
           <p class="text-xl">
-            <span class="text-blue-800">Hi,</span> I am
+
+            <span class="text-blue-700">
+              Hi,
+            </span>
+
+            I am
+
           </p>
 
-          <h1 class="text-4xl md:text-6xl font-semibold leading-normal">
-            Anika <br />
+          <h1 class="text-5xl md:text-6xl font-bold leading-normal mt-2">
+
+            Anika
+            <br/>
+
             Kabir
+
           </h1>
 
-          <p class="mt-2">
-            Engineer | Developer & Problem Solver
+          <p class="mt-4 text-lg text-gray-700">
+
+            Frontend Developer |
+            Creative Designer |
+            Problem Solver
+
           </p>
 
-          <br />
+          <br/>
 
-          <div>
-            <a
-              href="AnikaKabir_CV.pdf"
-              download
-              class="bg-yellow-300 rounded-3xl py-3 px-6 font-medium inline-block hover:bg-yellow-400 hover:text-green-700 duration-300"
-            >
-              Download CV
-            </a>
-          </div>
+          <a
+            href="D:\J_Prep\New folder\AnikaKabir_CV.pdf"
+            download
+            class="btn btn-warning rounded-full px-8 text-lg"
+          >
+            Download CV
+          </a>
+
         </div>
 
-        <!-- Hero Image -->
+        <!-- IMAGE -->
         <img
           src="images/anika.png"
           alt="Anika"
-          class="hero-image w-[80%] md:w-[60%] lg:w-[40%] rounded-t-full"
+          class="hero-image w-[80%] md:w-[60%] lg:w-[40%] rounded-[40px]"
         />
+
       </div>
+
     </div>
+
   </header>
 
-  <!-- Main -->
+  <!-- MAIN -->
   <main class="w-full max-w-7xl px-4 sm:px-6 lg:px-8">
 
-    <!-- About -->
+    <!-- ABOUT -->
     <section
       id="about"
-      class="bg-gray-100 shadow-md rounded-lg text-center py-10 px-6 mt-10"
+      class="bg-gray-100 rounded-2xl py-14 px-6 mt-10 shadow-md text-center"
     >
 
-      <h3 class="section-title">About Me</h3>
+      <h3 class="section-title">
+        About Me
+      </h3>
 
       <p class="section-description">
-        I am a designer & developer with a passion for web design.
-        I enjoy developing simple, clean and slick websites that
-        provide real value to the end user.
+
+        I am a passionate frontend developer and creative designer.
+        I enjoy building clean, modern and user-friendly websites
+        that provide meaningful experiences for users.
+
       </p>
 
       <div class="about-items">
 
         <div class="about-item">
-          <p class="item-title">Name</p>
-          <p class="item-description">Anika Kabir</p>
+
+          <p class="item-title">
+            Name
+          </p>
+
+          <p class="item-description">
+            Anika Kabir
+          </p>
+
         </div>
 
         <div class="about-item">
-          <p class="item-title">Email</p>
+
+          <p class="item-title">
+            Email
+          </p>
+
           <p class="item-description break-all">
             anikabir2025@gmail.com
           </p>
+
         </div>
 
         <div class="about-item">
-          <p class="item-title">Date of Birth</p>
+
+          <p class="item-title">
+            Date of Birth
+          </p>
+
           <p class="item-description">
             May 27, 2001
           </p>
+
         </div>
 
         <div class="about-item">
-          <p class="item-title">From</p>
-          <p class="item-description">Bangladesh</p>
+
+          <p class="item-title">
+            Location
+          </p>
+
+          <p class="item-description">
+            Bangladesh
+          </p>
+
         </div>
 
       </div>
+
     </section>
 
-    <!-- Skills -->
-    <section id="skills" class="py-16">
+    <!-- SKILLS -->
+    <section
+      id="skills"
+      class="py-20"
+    >
 
       <h3 class="section-title text-center">
-        What I Do
+        My Skills
       </h3>
 
       <p class="section-description">
-        I have 1 year experience building software.
-        Below is a quick overview of my technical skillsets
-        and technologies I use.
+
+        Here are some technologies and tools
+        I use to create modern and responsive websites.
+
       </p>
 
-      <br /><br />
+      <br/><br/>
 
       <div class="skills-container">
 
+        <!-- HTML -->
         <div class="skill">
-          <img src="images/icons/html.png" alt="HTML" />
-          <h4 class="skill-title">HTML</h4>
+
+          <img
+            src="images/icons/html.png"
+            alt="HTML"
+          />
+
+          <h4 class="skill-title">
+            HTML
+          </h4>
+
+          <p class="text-gray-500 mt-2">
+            Building clean website structure.
+          </p>
+
         </div>
 
+        <!-- CSS -->
         <div class="skill">
-          <img src="images/icons/css.png" alt="CSS" />
-          <h4 class="skill-title">CSS</h4>
+
+          <img
+            src="images/icons/css.png"
+            alt="CSS"
+          />
+
+          <h4 class="skill-title">
+            CSS
+          </h4>
+
+          <p class="text-gray-500 mt-2">
+            Creating responsive modern designs.
+          </p>
+
         </div>
 
+        <!-- JS -->
         <div class="skill">
-          <img src="images/icons/js.png" alt="JavaScript" />
-          <h4 class="skill-title">JavaScript</h4>
+
+          <img
+            src="images/icons/js.png"
+            alt="JavaScript"
+          />
+
+          <h4 class="skill-title">
+            JavaScript
+          </h4>
+
+          <p class="text-gray-500 mt-2">
+            Making websites interactive.
+          </p>
+
         </div>
 
+        <!-- WordPress -->
         <div class="skill">
-          <img src="images/icons/wordpress.png" alt="WordPress" />
-          <h4 class="skill-title">WordPress</h4>
+
+          <img
+            src="images/icons/wordpress.png"
+            alt="WordPress"
+          />
+
+          <h4 class="skill-title">
+            WordPress
+          </h4>
+
+          <p class="text-gray-500 mt-2">
+            CMS website development.
+          </p>
+
+        </div>
+
+        <!-- WORD -->
+        <div class="skill">
+
+          <img
+            src="https://img.icons8.com/color/96/microsoft-word-2019.png"
+            alt="Word"
+          />
+
+          <h4 class="skill-title">
+            Microsoft Word
+          </h4>
+
+          <p class="text-gray-500 mt-2">
+            Professional document creation.
+          </p>
+
+        </div>
+
+        <!-- EXCEL -->
+        <div class="skill">
+
+          <img
+            src="https://img.icons8.com/color/96/microsoft-excel-2019.png"
+            alt="Excel"
+          />
+
+          <h4 class="skill-title">
+            Microsoft Excel
+          </h4>
+
+          <p class="text-gray-500 mt-2">
+            Data analysis and spreadsheets.
+          </p>
+
+        </div>
+
+        <!-- POWERPOINT -->
+        <div class="skill">
+
+          <img
+            src="https://img.icons8.com/color/96/microsoft-powerpoint-2019.png"
+            alt="PowerPoint"
+          />
+
+          <h4 class="skill-title">
+            PowerPoint
+          </h4>
+
+          <p class="text-gray-500 mt-2">
+            Professional slide presentations.
+          </p>
+
         </div>
 
       </div>
+
     </section>
 
-    <!-- Education -->
+    <!-- EDUCATION -->
     <section
       id="education"
-      class="bg-gray-100 py-10 px-6 rounded-lg shadow-md"
+      class="bg-gray-100 py-14 px-6 rounded-2xl shadow-md"
     >
 
-      <h4 class="text-2xl font-bold text-center mb-6">
+      <h4 class="section-title text-center">
         Educational Background
       </h4>
 
-      <div class="overflow-x-auto rounded-lg bg-white shadow-sm">
+      <div class="overflow-x-auto rounded-xl bg-white">
 
         <table class="table w-full">
 
           <thead class="bg-gray-200">
+
             <tr>
-              <th></th>
+
+              <th>#</th>
               <th>Level</th>
               <th>Institute</th>
+
             </tr>
+
           </thead>
 
           <tbody>
+
             <tr>
+
               <th>1</th>
+
               <td>BSC</td>
-              <td>University Of Development Alternative</td>
+
+              <td>
+                University Of Development Alternative
+              </td>
+
             </tr>
 
             <tr>
+
               <th>2</th>
+
               <td>HSC</td>
-              <td>Thakurgaon Govt Women College</td>
+
+              <td>
+                Thakurgaon Govt Women College
+              </td>
+
             </tr>
 
             <tr>
+
               <th>3</th>
+
               <td>SSC</td>
-              <td>Thakurgaon Sugar Mills High School</td>
+
+              <td>
+                Thakurgaon Sugar Mills High School
+              </td>
+
             </tr>
+
           </tbody>
 
         </table>
+
       </div>
+
     </section>
 
-    <!-- Contact -->
-    <!-- Contact -->
-<section
-  id="contact"
-  class="py-20 px-6 bg-gradient-to-r from-blue-100 to-cyan-100 rounded-2xl shadow-lg mt-16"
->
-
-  <div class="text-center mb-12">
-    <h3 class="text-4xl font-bold text-gray-800">
-      Get In Touch
-    </h3>
-
-    <p class="mt-4 text-gray-600 max-w-2xl mx-auto">
-      Have a project idea, collaboration, or just want to say hello?
-      Feel free to contact me anytime.
-    </p>
-  </div>
-
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-
-    <!-- Left Side -->
-    <div class="space-y-6">
-
-      <!-- Email -->
-      <div
-        class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl duration-300"
-      >
-        <h4 class="text-xl font-bold mb-2 text-blue-700">
-          📧 Email
-        </h4>
-
-        <p class="text-gray-700 break-all">
-          anikabir2025@gmail.com
-        </p>
-      </div>
-
-      <!-- Phone -->
-      <div
-        class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl duration-300"
-      >
-        <h4 class="text-xl font-bold mb-2 text-blue-700">
-          📱 Phone
-        </h4>
-
-        <p class="text-gray-700">
-          +880 1786720396
-        </p>
-      </div>
-
-      <!-- Location -->
-      <div
-        class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl duration-300"
-      >
-        <h4 class="text-xl font-bold mb-2 text-blue-700">
-          📍 Location
-        </h4>
-
-        <p class="text-gray-700">
-          Dhaka, Bangladesh
-        </p>
-      </div>
-
-      <!-- Social Links -->
-      <div
-        class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl duration-300"
-      >
-        <h4 class="text-xl font-bold mb-4 text-blue-700">
-          🌐 Social Media
-        </h4>
-
-        <div class="flex gap-4 flex-wrap">
-
-          <a
-            href="#"
-            class="btn btn-circle btn-outline hover:bg-blue-600 hover:text-white"
-          >
-            F
-          </a>
-
-          <a
-            href="#"
-            class="btn btn-circle btn-outline hover:bg-sky-500 hover:text-white"
-          >
-            T
-          </a>
-
-          <a
-            href="#"
-            class="btn btn-circle btn-outline hover:bg-pink-500 hover:text-white"
-          >
-            I
-          </a>
-
-          <a
-            href="#"
-            class="btn btn-circle btn-outline hover:bg-gray-800 hover:text-white"
-          >
-            G
-          </a>
-
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Contact Form -->
-    <div
-      class="bg-white p-8 rounded-2xl shadow-md"
+    <!-- BLOG -->
+    <section
+      id="blog"
+      class="py-20 px-6 mt-16 bg-gradient-to-r from-purple-100 to-pink-100 rounded-2xl shadow-lg"
     >
 
-      <form class="space-y-5">
+      <div class="text-center mb-12">
 
-        <div>
-          <label class="label">
-            <span class="label-text font-semibold">
-              Your Name
-            </span>
-          </label>
+        <h3 class="section-title">
+          My Blog
+        </h3>
 
-          <input
-            type="text"
-            placeholder="Enter your name"
-            class="input input-bordered w-full"
+        <p class="section-description">
+
+          Here I share my learning journey,
+          thoughts and creative ideas.
+
+        </p>
+
+      </div>
+
+      <!-- BLOG GRID -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <!-- BLOG 1 -->
+        <div class="blog-card overflow-hidden">
+
+          <img
+            src="https://images.unsplash.com/photo-1498050108023-c5249f4df085"
+            alt="Blog"
           />
+
+          <div class="p-6">
+
+            <p class="text-sm text-gray-500">
+              May 2026
+            </p>
+
+            <h4 class="text-2xl font-bold mt-2">
+              My Web Development Journey
+            </h4>
+
+            <p class="text-gray-600 mt-3">
+
+              How I started learning web development
+              and became passionate about frontend design.
+
+            </p>
+
+            <button class="btn btn-primary mt-5 rounded-full">
+              Read More
+            </button>
+
+          </div>
+
         </div>
 
-        <div>
-          <label class="label">
-            <span class="label-text font-semibold">
-              Email Address
-            </span>
-          </label>
+        <!-- BLOG 2 -->
+        <div class="blog-card overflow-hidden">
 
-          <input
-            type="email"
-            placeholder="Enter your email"
-            class="input input-bordered w-full"
+          <img
+            src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3"
+            alt="Blog"
           />
+
+          <div class="p-6">
+
+            <p class="text-sm text-gray-500">
+              April 2026
+            </p>
+
+            <h4 class="text-2xl font-bold mt-2">
+              Why I Love Programming
+            </h4>
+
+            <p class="text-gray-600 mt-3">
+
+              Programming helps me solve real problems
+              and create useful digital experiences.
+
+            </p>
+
+            <button class="btn btn-primary mt-5 rounded-full">
+              Read More
+            </button>
+
+          </div>
+
         </div>
 
-        <div>
-          <label class="label">
-            <span class="label-text font-semibold">
-              Message
-            </span>
-          </label>
+        <!-- BLOG 3 -->
+        <div class="blog-card overflow-hidden">
 
-          <textarea
-            class="textarea textarea-bordered w-full h-36"
-            placeholder="Write your message..."
-          ></textarea>
+          <img
+            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f"
+            alt="Blog"
+          />
+
+          <div class="p-6">
+
+            <p class="text-sm text-gray-500">
+              March 2026
+            </p>
+
+            <h4 class="text-2xl font-bold mt-2">
+              Tips For Beginner Developers
+            </h4>
+
+            <p class="text-gray-600 mt-3">
+
+              Some useful advice and resources
+              for people starting coding journey.
+
+            </p>
+
+            <button class="btn btn-primary mt-5 rounded-full">
+              Read More
+            </button>
+
+          </div>
+
         </div>
 
-        <button
-          class="btn btn-primary w-full text-white text-lg"
-        >
-          Send Message
-        </button>
+      </div>
 
-      </form>
+    </section>
 
-    </div>
+    <!-- CONTACT -->
+    <section
+      id="contact"
+      class="py-20 px-6 bg-gradient-to-r from-blue-100 to-cyan-100 rounded-2xl shadow-lg mt-16"
+    >
 
-  </div>
+      <div class="text-center mb-12">
 
-</section>
+        <h3 class="section-title">
+          Get In Touch
+        </h3>
+
+        <p class="section-description">
+
+          Feel free to contact me
+          for collaboration or project discussion.
+
+        </p>
+
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+
+        <!-- LEFT -->
+        <div class="space-y-6">
+
+          <div class="contact-card p-6">
+
+            <h4 class="text-xl font-bold text-blue-700 mb-2">
+              📧 Email
+            </h4>
+
+            <p class="text-gray-700">
+              anikabir2025@gmail.com
+            </p>
+
+          </div>
+
+          <div class="contact-card p-6">
+
+            <h4 class="text-xl font-bold text-blue-700 mb-2">
+              📱 Phone
+            </h4>
+
+            <p class="text-gray-700">
+              +8801786720396
+            </p>
+
+          </div>
+
+          <div class="contact-card p-6">
+
+            <h4 class="text-xl font-bold text-blue-700 mb-2">
+              📍 Location
+            </h4>
+
+            <p class="text-gray-700">
+              Dhaka, Bangladesh
+            </p>
+
+          </div>
+
+        </div>
+
+        <!-- FORM -->
+        <div class="contact-card p-8">
+
+          <form class="space-y-5">
+
+            <div>
+
+              <label class="label">
+
+                <span class="label-text font-semibold">
+                  Your Name
+                </span>
+
+              </label>
+
+              <input
+                type="text"
+                placeholder="Enter your name"
+                class="input input-bordered w-full"
+              />
+
+            </div>
+
+            <div>
+
+              <label class="label">
+
+                <span class="label-text font-semibold">
+                  Email Address
+                </span>
+
+              </label>
+
+              <input
+                type="email"
+                placeholder="Enter your email"
+                class="input input-bordered w-full"
+              />
+
+            </div>
+
+            <div>
+
+              <label class="label">
+
+                <span class="label-text font-semibold">
+                  Message
+                </span>
+
+              </label>
+
+              <textarea
+                class="textarea textarea-bordered w-full h-36"
+                placeholder="Write your message..."
+              ></textarea>
+
+            </div>
+
+            <button
+              class="btn btn-primary w-full text-lg"
+            >
+              Send Message
+            </button>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </section>
 
   </main>
 
-  <!-- Footer -->
+  <!-- FOOTER -->
   <footer
-    class="footer footer-horizontal footer-center bg-primary text-primary-content p-10 mt-10 w-full"
+    class="footer footer-center bg-primary text-primary-content p-10 mt-10 w-full"
   >
 
     <aside>
-      <p class="font-bold">
-        Anika Kabir <br />
-        Turning visions into values
+
+      <p class="font-bold text-lg">
+
+        Anika Kabir
+
       </p>
 
       <p>
-        Copyright ©2026 - All right reserved
+
+        Frontend Developer & Creative Designer
+
       </p>
+
+      <p>
+
+        Copyright © 2026
+        - All rights reserved
+
+      </p>
+
     </aside>
 
   </footer>
